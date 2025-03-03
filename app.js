@@ -1,4 +1,4 @@
-// filepath: /procurement-backend/server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
@@ -16,7 +16,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Routes
-const requestRoutes = require('./routes/requestRoutes');
+const requestRoutes = require('./routes/requestRoute.js');
 
 app.use('/api/requests', requestRoutes);
 

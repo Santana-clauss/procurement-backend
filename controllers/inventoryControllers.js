@@ -1,5 +1,5 @@
-// filepath: /procurement-backend/controllers/inventoryController.js
-const Inventory = require('../models/inventoryModel');
+
+const Inventory = require('../models/inventoryModel.js');
 
 exports.getAllInventoryItems = async (req, res) => {
   try {

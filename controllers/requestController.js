@@ -1,5 +1,5 @@
-// filepath: /procurement-backend/controllers/requestController.js
-const Request = require('../models/requestModel');
+
+const Request = require('../models/requestModel.js');
 
 exports.getAllRequests = async (req, res) => {
   try {
