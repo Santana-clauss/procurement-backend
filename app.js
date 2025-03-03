@@ -13,7 +13,7 @@ connectDB();
 const app = express();
 
 // Enable CORS
-app.use(cors({ origin: '*' })); // Allow all origins (for development)
+app.use(cors({ origin: '*' })); 
 
 // Middleware
 app.use(bodyParser.json());
