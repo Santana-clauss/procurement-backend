@@ -1,7 +1,7 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const cors = require('cors');  // Import CORS
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -11,6 +11,9 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Enable CORS
+app.use(cors({ origin: '*' })); // Allow all origins (for development)
 
 // Middleware
 app.use(bodyParser.json());
@@ -22,7 +25,7 @@ const userRoutes = require('./routes/userRoute.js');
 app.use('/api/users', userRoutes);
 app.use('/api/requests', requestRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
