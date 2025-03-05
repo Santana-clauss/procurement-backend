@@ -21,10 +21,11 @@ app.use(bodyParser.json());
 // Routes
 const requestRoutes = require('./routes/requestRoute.js');
 const userRoutes = require('./routes/userRoute.js');
+const vendorRoutes = require('./routes/vendorRoutes.js');
 
 app.use('/api/users', userRoutes);
 app.use('/api/requests', requestRoutes);
-
+app.use('/api/vendors',vendorRoutes);
 const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {

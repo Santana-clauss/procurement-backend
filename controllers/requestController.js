@@ -1,4 +1,3 @@
-
 const Request = require('../models/requestModel.js');
 
 exports.getAllRequests = async (req, res) => {
@@ -11,12 +10,13 @@ exports.getAllRequests = async (req, res) => {
 };
 
 exports.createRequest = async (req, res) => {
-  const { requestorName, department, totalAmount, items } = req.body;
+  const { requestorName, department, totalAmount, items, description } = req.body;
   const newRequest = new Request({
     requestorName,
     department,
     totalAmount,
     items,
+    description: description || '', // Optional field
   });
 
   try {
@@ -29,7 +29,7 @@ exports.createRequest = async (req, res) => {
 
 exports.updateRequestStatus = async (req, res) => {
   const { id } = req.params;
-  const { status } = req.body;
+  const { status, isAdmin } = req.body;
 
   try {
     const request = await Request.findById(id);
@@ -37,9 +37,13 @@ exports.updateRequestStatus = async (req, res) => {
       return res.status(404).json({ message: 'Request not found' });
     }
 
-    request.status = status;
-    const updatedRequest = await request.save();
-    res.json(updatedRequest);
+    if (isAdmin) {
+      request.status = status;
+      const updatedRequest = await request.save();
+      res.json(updatedRequest);
+    } else {
+      res.status(403).json({ message: 'Unauthorized' });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
